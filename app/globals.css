@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 
-
 body {
- 
+  color: white;
+}
+.image2 {
+  background-color: #22A9D8;
+	background-image: url(https://res.cloudinary.com/dmye53wps/image/upload/v1747713810/weatg_h_xt7xhm.png);
+	background-size: cover;
+	background-position: center;
+	background-blend-mode: multiply;
 }
