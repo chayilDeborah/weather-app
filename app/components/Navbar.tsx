@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
 	return (
 		<nav className="flex justify-between items-center p-4 mt-[10px] text-white">
-			<div className="flex justify-between items-center w-[90%] mx-auto ">
+			<div className="flex justify-between items-center w-[70%] md:w-[540px] mx-auto ">
 				<h1 className="text-[24px] font-extrabold ">
 					CTech Weather App
 				</h1>
