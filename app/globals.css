@@ -5,8 +5,8 @@ body {
   color: white;
 }
 .image2 {
-  background-color: #22A9D8;
-	background-image: url(https://res.cloudinary.com/dmye53wps/image/upload/v1747713810/weatg_h_xt7xhm.png);
+  /* background-color: #22A9D8; */
+	background-image: url(https://res.cloudinary.com/dmye53wps/image/upload/v1747728779/luke-chesser-3rWagdKBF7U-unsplash_lksmn2.jpg);
 	background-size: cover;
 	background-position: center;
 	background-blend-mode: multiply;
