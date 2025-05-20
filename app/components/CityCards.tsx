@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { City, WeatherResponse } from "../types";
 import {
 	LARGEST_CITIES,
@@ -12,6 +13,7 @@ import star from "../assets/star.svg";
 import starFilled from "../assets/star-filled.svg";
 
 const CityCards = () => {
+	const router = useRouter();
 	const [cities, setCities] = useState<City[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
@@ -66,6 +68,10 @@ const CityCards = () => {
 		setCities(sortCities(updatedCities));
 	};
 
+	const navigateToDetails = (city: City) => {
+		router.push(`/weather/${encodeURIComponent(city.name)}/${encodeURIComponent(city.country)}`);
+	};
+
 	useEffect(() => {
 		fetchWeatherData();
 	}, []);
@@ -88,7 +94,10 @@ const CityCards = () => {
 						className="bg-transparent rounded-lg px-6 py-7 shadow-lg hover:shadow-2xl transition-shadow"
 					>
 						<div className="flex justify-between items-start">
-							<div>
+							<div 
+								onClick={() => navigateToDetails(city)}
+								className="cursor-pointer"
+							>
 								<h2
 									className={`text-2xl font-semibold ${
 										city.favorite ? "text-blue-500" : ""
@@ -100,7 +109,10 @@ const CityCards = () => {
 									{city.country}
 								</p>
 							</div>
-							<div className="text-4xl font-bold">
+							<div 
+								className="text-4xl font-bold cursor-pointer"
+								onClick={() => navigateToDetails(city)}
+							>
 								{city.temp}°
 							</div>
 						</div>
@@ -108,16 +120,14 @@ const CityCards = () => {
 							<div className="flex gap-2">
 								<button
 									onClick={() => toggleFavorite(city.id)}
-									className={`py-2 px-3 hover:bg-gray-300 rounded-full bg-white transition-colors text-black flex gap-2 items-center cursor-pointer `}
+									className={`py-2 px-3 hover:bg-gray-300 rounded-full bg-white transition-colors text-black flex gap-2 items-center cursor-pointer`}
 								>
 									<Image
 										src={city.favorite ? starFilled : star}
 										alt="favorite"
 										width={20}
 										height={20}
-										className={
-											city.favorite ? "text-blue-500" : ""
-										}
+										className={city.favorite ? "text-blue-500" : ""}
 									/>
 									<h2>
 										{city.favorite
@@ -137,7 +147,7 @@ const CityCards = () => {
 									/>
 								</button>
 							</div>
-							<p className="text-gray-200 text-lg ">
+							<p className="text-gray-200 text-lg">
 								{city.weather}
 							</p>
 						</div>
